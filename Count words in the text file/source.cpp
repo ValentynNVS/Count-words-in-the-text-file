@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	FILE* filePointer = NULL;
 
 	/*This part check if there is enough parameters to run the code*/
-	if (argc == 1) {
+	if (argc == 2) {
 		strcpy_s(filename, argv[1]);
 	}
 	else {
@@ -31,32 +31,31 @@ int main(int argc, char* argv[]) {
 			return 1; // Return error code
 		}
 
-	printf("Enter the word you would like to enter: \n");
+	printf("Enter the word you would like to check: \n");
 	fgets(wordName, kCharSize, stdin);
 	takeOfLastFunction(wordName);
+	int i = 0;
 	while (!feof(filePointer)) {
-		int i = 0;
 		int result = 0;
 		char empty[kCharSize] = "";
+		lineInfo[i] = fgetc(filePointer);
 		if (lineInfo[i] == '\n' || lineInfo[i] == '\t' || lineInfo[i] == '\0' || lineInfo[i] == ' ') {
 
+			takeOfLastFunction(lineInfo);
 			result = strcmp(lineInfo, wordName);
-			if (result) {
+			if (result == 0) {
 				wordCount++;
 			}
-			strcpy(lineInfo, empty);
+			strcpy(lineInfo, '\0');
+			i = 0;
 			continue;
 		}
 		else {
-			lineInfo[i] = fgetc(filePointer);
-			
+			i++;
 		}
 
-		
-
-
-		i++;
 	}
+	fclose(filePointer);
 	printf("The number of similar words is : %d\n", wordCount);
 
 }
@@ -65,9 +64,7 @@ int takeOfLastFunction(char* str) {
 
 
 	size_t len = strlen(str);
-	if ( str[len-1] == '\n') {
-		str[len - 1] = '\0';
-	}
+	str[len - 1] = '\0';
 
 	return 0;
 

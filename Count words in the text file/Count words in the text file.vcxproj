@@ -24,6 +24,7 @@
     <ProjectGuid>{faf42f68-2d3d-4cb3-91a8-c95c6d47922c}</ProjectGuid>
     <RootNamespace>Countwordsinthetextfile</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>hhh</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
