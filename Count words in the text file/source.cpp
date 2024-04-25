@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 
 	}
 	fclose(filePointer);
-	printf("The number of similar words is : %d\n", wordCount);
+	printf("The number of similar words is :  %d\n", wordCount);
 
 }
 
