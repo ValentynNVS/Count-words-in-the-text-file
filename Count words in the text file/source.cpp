@@ -1,71 +1,87 @@
+/*
+* FILE : source.cpp
+* PROJECT : Count words in the text file
+* PROGRAMMER : Valentyn Novosydliuk
+* FIRST VERSION : 04/20/2024
+* DESCRIPTION :
+* This C program was developed by me and can be used to count the amount of times the
+* word that was entered by the user repeats in the text file.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-
+#pragma warning (disable:4996)
 const int kCharSize = 100;
-int takeOfLastFunction(char* str);
+
+/*function prototype*/
+int takeOffLastFunction(char* str);
 
 int main(int argc, char* argv[]) {
 
+    char filename[kCharSize] = "";
+    char wordName[kCharSize] = "";
+    char lineInfo[kCharSize] = "";
+    int wordCount = 0;
 
-	char filename[kCharSize] = "";
-	char wordName[kCharSize] = "";
-	char lineInfo[kCharSize] = "";
-	int wordCount = 0;
+    FILE* filePointer = NULL;
 
-	FILE* filePointer = NULL;
+    if (argc != 2) {
+        printf("Not enough parameters provided.\n");
+        return 1;
+    }
 
-	/*This part check if there is enough parameters to run the code*/
-	if (argc == 2) {
-		strcpy_s(filename, argv[1]);
-	}
-	else {
-		printf("too many or not enough parameters");
-		return 0;
-	}
-	#pragma warning (disable : 4996);
-		filePointer = fopen(filename, "r"); // Open file in read mode
-		if (filePointer == NULL) {
-			printf("Error opening file. \n");
-			return 1; // Return error code
-		}
+    strcpy(filename, argv[1]);
 
-	printf("Enter the word you would like to check: \n");
-	fgets(wordName, kCharSize, stdin);
-	takeOfLastFunction(wordName);
-	int i = 0;
-	while (!feof(filePointer)) {
-		int result = 0;
-		char empty[kCharSize] = "";
-		lineInfo[i] = fgetc(filePointer);
-		if (lineInfo[i] == '\n' || lineInfo[i] == '\t' || lineInfo[i] == '\0' || lineInfo[i] == ' ') {
+    filePointer = fopen(filename, "r");
+    if (filePointer == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
 
-			takeOfLastFunction(lineInfo);
-			result = strcmp(lineInfo, wordName);
-			if (result == 0) {
-				wordCount++;
-			}
-			strcpy(lineInfo, '\0');
-			i = 0;
-			continue;
-		}
-		else {
-			i++;
-		}
+    printf("Enter the word you would like to check:\n");
+    fgets(wordName, kCharSize, stdin);
+    takeOffLastFunction(wordName);
 
-	}
-	fclose(filePointer);
-	printf("The number of similar words is :  %d\n", wordCount);
-
+    int i = 0;
+    while (!feof(filePointer)) {
+        int result = 0;
+        char empty[kCharSize] = "";
+        lineInfo[i] = fgetc(filePointer);
+        /*checks if the charachter is a letter and if not then it compares the word and in case
+        the word mathces then it adds +1 to the count of words*/
+        if (!isalpha(lineInfo[i])) {
+            takeOffLastFunction(lineInfo);
+            result = strcmp(lineInfo, wordName);
+            if (result == 0) {
+                wordCount++;
+            }
+            memset(lineInfo, '\0', sizeof(lineInfo));
+            i = 0;
+            continue;
+        }
+        else {
+            i++;
+        }
+       
+    }
+    fclose(filePointer);
+    printf("The number of similar words is: %d\n", wordCount);
+    return 0;
 }
 
-int takeOfLastFunction(char* str) {
 
-	/*function to take off the last element from the string*/
-	size_t len = strlen(str);
-	str[len - 1] = '\0';
+//
+// FUNCTION : takeOffLastFunction
+// DESCRIPTION : This function takes off last symbol that was add by fgets
+// PARAMETERS : char* str : pointer to a string
+// RETURNS : return 0 : in case of success
+//
+int takeOffLastFunction(char* str) {
+    size_t len = strlen(str);
+    str[len - 1] = '\0';
 
-	return 0;
-
+    return 0;
 }
