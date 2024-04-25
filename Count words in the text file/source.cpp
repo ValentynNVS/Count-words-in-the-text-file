@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 
 int takeOfLastFunction(char* str) {
 
-
+	/*function to take off the last element from the string*/
 	size_t len = strlen(str);
 	str[len - 1] = '\0';
 
