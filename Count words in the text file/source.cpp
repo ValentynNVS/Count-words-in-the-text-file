@@ -75,6 +75,13 @@ int main(int argc, char* argv[]) {
     }
 
     fclose(filePointer);
+    if (filePointer == NULL) {
+
+        printf("Could not close the file. \n");
+        return 0;
+
+    }
+
     printf("The number of similar words is: %d\n", wordCount);
     return 0;
 }
