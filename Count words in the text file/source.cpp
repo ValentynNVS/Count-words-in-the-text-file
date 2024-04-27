@@ -54,6 +54,7 @@ int main(int argc, char* argv[]) {
 
         int result = 0;
         char empty[kCharSize] = "";
+        /*Add 1 letter from a string to form a word*/
         lineInfo[index] = fgetc(filePointer);
 
         /*Checks if the charachter is a letter and if not then it compares the word and in case
