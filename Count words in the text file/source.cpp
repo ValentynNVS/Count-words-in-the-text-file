@@ -16,7 +16,7 @@
 #pragma warning (disable:4996)
 const int kCharSize = 100;
 
-/*function prototype*/
+/*Function prototype*/
 int takeOffLastFunction(char* str);
 
 int main(int argc, char* argv[]) {
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    printf("Enter the word you would like to check:\n");
+    printf("Enter the word you would like to check: \n");
     fgets(wordName, kCharSize, stdin);
     takeOffLastFunction(wordName);
 
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         int result = 0;
         char empty[kCharSize] = "";
         lineInfo[i] = fgetc(filePointer);
-        /*checks if the charachter is a letter and if not then it compares the word and in case
+        /*Checks if the charachter is a letter and if not then it compares the word and in case
         the word mathces then it adds +1 to the count of words*/
         if (!isalpha(lineInfo[i])) {
             takeOffLastFunction(lineInfo);
