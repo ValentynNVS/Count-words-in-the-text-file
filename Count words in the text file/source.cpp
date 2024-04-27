@@ -36,6 +36,7 @@ int main(int argc, char* argv[]) {
 
     }
 
+    /*Assigns the user input to the variable*/
     strcpy(filename, argv[1]);
 
     /*Opens the file and checks for an errors*/
