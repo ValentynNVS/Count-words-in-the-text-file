@@ -29,8 +29,10 @@ int main(int argc, char* argv[]) {
     FILE* filePointer = NULL;
 
     if (argc != 2) {
+
         printf("Not enough parameters provided.\n");
-        return 1;
+        return 0;
+
     }
 
     strcpy(filename, argv[1]);
@@ -47,9 +49,11 @@ int main(int argc, char* argv[]) {
 
     int i = 0;
     while (!feof(filePointer)) {
+
         int result = 0;
         char empty[kCharSize] = "";
         lineInfo[i] = fgetc(filePointer);
+
         /*Checks if the charachter is a letter and if not then it compares the word and in case
         the word mathces then it adds +1 to the count of words*/
         if (!isalpha(lineInfo[i])) {
@@ -67,6 +71,7 @@ int main(int argc, char* argv[]) {
         }
        
     }
+
     fclose(filePointer);
     printf("The number of similar words is: %d\n", wordCount);
     return 0;
