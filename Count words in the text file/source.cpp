@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
     char wordName[kCharSize] = "";
     char lineInfo[kCharSize] = "";
     int wordCount = 0;
+    int index = 0;
 
     FILE* filePointer = NULL;
 
@@ -47,27 +48,26 @@ int main(int argc, char* argv[]) {
     fgets(wordName, kCharSize, stdin);
     takeOffLastFunction(wordName);
 
-    int i = 0;
     while (!feof(filePointer)) {
 
         int result = 0;
         char empty[kCharSize] = "";
-        lineInfo[i] = fgetc(filePointer);
+        lineInfo[index] = fgetc(filePointer);
 
         /*Checks if the charachter is a letter and if not then it compares the word and in case
         the word mathces then it adds +1 to the count of words*/
-        if (!isalpha(lineInfo[i])) {
+        if (!isalpha(lineInfo[index])) {
             takeOffLastFunction(lineInfo);
             result = strcmp(lineInfo, wordName);
             if (result == 0) {
                 wordCount++;
             }
             memset(lineInfo, '\0', sizeof(lineInfo));
-            i = 0;
+            index = 0;
             continue;
         }
         else {
-            i++;
+            index++;
         }
        
     }
