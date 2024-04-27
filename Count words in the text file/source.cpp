@@ -38,6 +38,7 @@ int main(int argc, char* argv[]) {
 
     strcpy(filename, argv[1]);
 
+    /*Opens the file and checks for an errors*/
     filePointer = fopen(filename, "r");
     if (filePointer == NULL) {
         printf("Error opening file.\n");
