@@ -23,7 +23,7 @@ int takeOffLastFunction(char* str);
 
 int main(int argc, char* argv[]) {
 
-
+    printf("hhelo world");
     printf("hello world");
     char filename[kCharSize] = "";
     char wordName[kCharSize] = "";
