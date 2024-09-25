@@ -8,12 +8,14 @@
 * word that was entered by the user repeats in the text file.
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
 #pragma warning (disable:4996)
+
 const int kCharSize = 100;
 
 /*Function prototype*/
@@ -21,6 +23,8 @@ int takeOffLastFunction(char* str);
 
 int main(int argc, char* argv[]) {
 
+
+    printf("hello world");
     char filename[kCharSize] = "";
     char wordName[kCharSize] = "";
     char lineInfo[kCharSize] = "";
